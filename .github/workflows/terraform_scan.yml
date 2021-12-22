@@ -7,7 +7,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    outputs:
+      matrix: ${{ steps.set-build.outputs.build }}
     steps:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
     - uses: actions/checkout@v2
