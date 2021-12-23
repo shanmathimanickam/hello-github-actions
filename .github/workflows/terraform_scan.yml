@@ -21,6 +21,7 @@ jobs:
       uses: devops-infra/action-pull-request@v0.4.2
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: terraform_analysis
     - name: Check outputs
       run: |
         echo "outcome - ${{ steps.cpr.outcome }}"
