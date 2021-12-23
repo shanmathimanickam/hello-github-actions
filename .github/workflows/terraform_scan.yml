@@ -5,7 +5,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
@@ -16,8 +15,13 @@ jobs:
     - name: Check outputs
       run: |
         echo "Terraform security scan output - ${{ steps.scan_output }}"
-         
-
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
 
 
