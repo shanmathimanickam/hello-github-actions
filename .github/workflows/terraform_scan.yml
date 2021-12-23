@@ -16,10 +16,15 @@ jobs:
       run: |
         echo "Terraform security scan outcome - ${{ steps.integrationTests.outcome }}"
     - name: Create Pull Request
+      if: steps.integrationTests.outcome == 'success'
       id: cpr
-      uses: peter-evans/create-pull-request@v3
+      uses: devops-infra/action-pull-request@v0.4.2
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Check outputs
       run: |
+        echo "outcome - ${{ steps.cpr.outcome }}"
+        echo "output - ${{ steps.cpr.outputs }}"
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
