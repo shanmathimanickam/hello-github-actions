@@ -15,6 +15,10 @@ jobs:
     - name: Print scan outcome
       run: |
         echo "Terraform security scan outcome - ${{ steps.integrationTests.outcome }}"
+    - name: Print scan failure
+      if: steps.integrationTests.outcome == 'failure'
+      run: |
+        echo "Terraform security scan has failed"
     - name: Create Pull Request
       if: steps.integrationTests.outcome == 'success'
       id: cpr
