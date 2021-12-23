@@ -10,11 +10,11 @@ jobs:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
     - uses: actions/checkout@v2
     - name: Terraform security scan
-      id: scan_output
+      id: integrationTests
       uses: triat/terraform-security-scan@v3.0.0
-    - name: Check outputs
+    - name: Print scan outcome
       run: |
-        echo "Terraform security scan output - ${{ steps.scan_output }}"
+        echo "Terraform security scan outcome - ${{ steps.integrationTests.outcome }}"
     - name: Create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v3
