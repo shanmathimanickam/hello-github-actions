@@ -24,7 +24,7 @@ jobs:
       id: cpr
       uses: devops-infra/action-pull-request@v0.4.2
       with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.token }}
           source_branch: terraform_analysis
     - name: Check outputs
       run: |
